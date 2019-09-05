@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "e-commerce react app w/node backend",
   "main": "server.js",
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
   "scripts": {
     "client": "cd client && npm run start",
     "server": "nodemon server.js",
