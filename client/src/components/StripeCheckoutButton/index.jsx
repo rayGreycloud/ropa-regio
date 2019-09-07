@@ -1,13 +1,31 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+
+import logo from '../../assets/crown.svg';
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_MqZA9i4PbgrUODccnd0enlQJ';
 
   const onToken = token => {
-    console.log(token);
-    alert('Payment Successful');
+    axios({
+      url: 'payment',
+      method: 'post',
+      data: {
+        amount: priceForStripe,
+        token
+      }
+    })
+      .then(response => {
+        alert('Payment was successful');
+      })
+      .catch(error => {
+        console.log('Payment Error: ', JSON.parse(error));
+        console.log(
+          'There was a problem with your payment. Make check your CC info and try again.'
+        );
+      });
   };
 
   return (
@@ -16,7 +34,7 @@ const StripeCheckoutButton = ({ price }) => {
       name='Ropa Regio'
       billingAddress
       shippingAddress
-      image='http://svgshare.com/i/CUz.svg'
+      image={logo}
       description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'
