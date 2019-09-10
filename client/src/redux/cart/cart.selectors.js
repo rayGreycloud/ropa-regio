@@ -25,3 +25,13 @@ export const selectCartTotal = createSelector(
   [selectCartItems],
   cartItems => cartItems.reduce(totalReducer, 0)
 );
+
+export const selectPaymentData = createSelector(
+  [selectCart],
+  cart => cart.paymentData
+);
+
+export const selectPaymentError = createSelector(
+  [selectCart],
+  cart => cart.paymentError
+);

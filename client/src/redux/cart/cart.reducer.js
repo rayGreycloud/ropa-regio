@@ -7,7 +7,9 @@ import {
 
 const INITIAL_STATE = {
   cartItems: [],
-  isHidden: true
+  isHidden: true,
+  paymentData: null,
+  paymentError: null
 };
 
 const {
@@ -15,7 +17,9 @@ const {
   REMOVE_ITEM,
   DECREASE_ITEM_QTY,
   TOGGLE_CART_HIDDEN,
-  CLEAR_CART
+  CLEAR_CART,
+  PAYMENT_SUBMIT_SUCCESS,
+  PAYMENT_SUBMIT_FAILURE
 } = CartActionTypes;
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -45,7 +49,17 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: []
       };
-
+    case PAYMENT_SUBMIT_SUCCESS:
+      return {
+        ...state,
+        paymentData: action.payload,
+        paymentError: null
+      };
+    case PAYMENT_SUBMIT_FAILURE:
+      return {
+        ...state,
+        paymentError: action.payload
+      };
     default:
       return state;
   }
