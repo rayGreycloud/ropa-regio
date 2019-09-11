@@ -1,7 +1,8 @@
 import { all, call, takeLatest, put } from 'redux-saga/effects';
+import axios from 'axios';
 
 import UserActionTypes from '../user/user.types';
-import CartActionTypes from '../cart/cart.types';
+import { CartActionTypes } from '../cart/cart.types';
 import {
   clearCart,
   paymentSubmitSuccess,
