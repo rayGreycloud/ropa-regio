@@ -8,7 +8,8 @@ const {
   CLEAR_CART,
   PAYMENT_SUBMIT_START,
   PAYMENT_SUBMIT_SUCCESS,
-  PAYMENT_SUBMIT_FAILURE
+  PAYMENT_SUBMIT_FAILURE,
+  CLEAR_PAYMENT_STATUS
 } = CartActionTypes;
 
 export const addItemToCart = item => ({
@@ -34,8 +35,9 @@ export const clearCart = () => ({
   type: CLEAR_CART
 });
 
-export const paymentSubmitStart = ({ amount, token }) => ({
-  type: PAYMENT_SUBMIT_START
+export const paymentSubmitStart = amountAndToken => ({
+  type: PAYMENT_SUBMIT_START,
+  payload: amountAndToken
 });
 
 export const paymentSubmitSuccess = data => ({
@@ -46,4 +48,8 @@ export const paymentSubmitSuccess = data => ({
 export const paymentSubmitFailure = error => ({
   type: PAYMENT_SUBMIT_FAILURE,
   payload: error
+});
+
+export const clearPaymentStatus = () => ({
+  type: CLEAR_PAYMENT_STATUS
 });

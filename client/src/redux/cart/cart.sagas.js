@@ -6,26 +6,34 @@ import { CartActionTypes } from '../cart/cart.types';
 import {
   clearCart,
   paymentSubmitSuccess,
-  paymentSubmitFailure
+  paymentSubmitFailure,
+  clearPaymentStatus
 } from './cart.actions';
 
 export function* clearCartOnSignOut() {
   yield put(clearCart());
 }
 
-export function* paymentSubmit({ payload: { amount, token } }) {
+export function* paymentSubmit({ payload }) {
+  yield put(clearPaymentStatus());
+
+  console.log('paymentSubmitSaga', payload.amount, payload.token);
+
   try {
     const response = yield axios({
-      url: '/api/payment',
+      url: 'api/payment',
       method: 'post',
       data: {
-        amount,
-        token
+        amount: payload.amount,
+        token: payload.token
       }
     });
-    const data = response.json();
-    yield put(paymentSubmitSuccess(data));
+    console.log('response:', response);
+    alert('Payment was successful');
+
+    yield put(paymentSubmitSuccess(response));
   } catch (error) {
+    alert('Payment error');
     yield put(paymentSubmitFailure(error));
   }
 }

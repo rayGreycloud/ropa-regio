@@ -8,8 +8,10 @@ import {
 const INITIAL_STATE = {
   cartItems: [],
   isHidden: true,
-  paymentData: null,
-  paymentError: null
+  paymentStatus: {
+    success: null,
+    error: null
+  }
 };
 
 const {
@@ -19,7 +21,8 @@ const {
   TOGGLE_CART_HIDDEN,
   CLEAR_CART,
   PAYMENT_SUBMIT_SUCCESS,
-  PAYMENT_SUBMIT_FAILURE
+  PAYMENT_SUBMIT_FAILURE,
+  CLEAR_PAYMENT_STATUS
 } = CartActionTypes;
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -52,13 +55,26 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case PAYMENT_SUBMIT_SUCCESS:
       return {
         ...state,
-        paymentData: action.payload,
-        paymentError: null
+        paymentStatus: {
+          success: action.payload.success,
+          error: null
+        }
       };
     case PAYMENT_SUBMIT_FAILURE:
       return {
         ...state,
-        paymentError: action.payload
+        paymentStatus: {
+          success: null,
+          error: action.payload
+        }
+      };
+    case CLEAR_PAYMENT_STATUS:
+      return {
+        ...state,
+        paymentStatus: {
+          success: null,
+          error: null
+        }
       };
     default:
       return state;
