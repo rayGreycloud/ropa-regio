@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const paymentRoutes = require('./routes/api/payment');
 
 const app = express();
 
@@ -12,9 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-const configureRoutes = require('./routes');
-
-configureRoutes(app);
+app.use('/api/payment', paymentRoutes);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
