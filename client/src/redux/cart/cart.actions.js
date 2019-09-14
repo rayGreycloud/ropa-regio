@@ -6,6 +6,8 @@ const {
   DECREASE_ITEM_QTY,
   TOGGLE_CART_HIDDEN,
   CLEAR_CART,
+  UPDATE_CART_IN_FIREBASE,
+  SET_CART_FROM_FIREBASE,
   PAYMENT_SUBMIT_START,
   PAYMENT_SUBMIT_SUCCESS,
   PAYMENT_SUBMIT_FAILURE,
@@ -33,6 +35,15 @@ export const toggleCartHidden = () => ({
 
 export const clearCart = () => ({
   type: CLEAR_CART
+});
+
+export const updateCartInFirebase = () => ({
+  type: UPDATE_CART_IN_FIREBASE
+});
+
+export const setCartFromFirebase = cartItems => ({
+  type: SET_CART_FROM_FIREBASE,
+  payload: cartItems
 });
 
 export const paymentSubmitStart = amountAndToken => ({

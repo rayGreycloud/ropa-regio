@@ -20,6 +20,7 @@ const {
   DECREASE_ITEM_QTY,
   TOGGLE_CART_HIDDEN,
   CLEAR_CART,
+  SET_CART_FROM_FIREBASE,
   PAYMENT_SUBMIT_SUCCESS,
   PAYMENT_SUBMIT_FAILURE,
   CLEAR_PAYMENT_STATUS
@@ -52,6 +53,13 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: []
       };
+
+    case SET_CART_FROM_FIREBASE:
+      return {
+        ...state,
+        cartItems: action.payload
+      };
+
     case PAYMENT_SUBMIT_SUCCESS:
       return {
         ...state,
