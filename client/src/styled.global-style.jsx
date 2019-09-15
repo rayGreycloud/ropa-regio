@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
     --google_blue: #4285f4;
     --google_blue_hover: #357ae8;
+    box-sizing: border-box;
   }
 
   body {
@@ -18,6 +19,10 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 20px 60px;
+
+    @media screen and (max-width: 800px) {
+      padding: 10px;
+    }
   }
 
   a {

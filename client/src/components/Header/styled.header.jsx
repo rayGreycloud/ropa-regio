@@ -13,6 +13,12 @@ export const StyledHeader = styled.div`
   align-items: center;
   margin-bottom: 25px;
   text-transform: uppercase;
+
+  @media screen and (max-width: 800px) {
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const StyledLogoContainer = styled(Link)`
@@ -23,6 +29,11 @@ export const StyledLogoContainer = styled(Link)`
   align-items: center;
   justify-content: center;
   box-sizing: unset;
+
+  @media screen and (max-width: 800px) {
+    width: 50px;
+    padding: 0;
+  }
 `;
 
 export const StyledOptions = styled.div`
@@ -31,6 +42,10 @@ export const StyledOptions = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 `;
 
 export const StyledOptionLink = styled(Link)`
